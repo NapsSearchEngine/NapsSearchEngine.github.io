@@ -25,7 +25,11 @@ function getQueryParams(qs) {
 
 // Call to function with anonymous callback
 loadJSON(function(response) {
-    document.getElementById("text").innerHTML = replaceAll(response, getUrlVars()['words'], "<span style=\"background:yellow;\">" + getUrlVars()['words'] + "</span>")
+    var values = getUrlVars()['words'].split(",");
+    for(var i=1; i<values.length; i++){
+       response = replaceAll(response, values[i], "<span style=\"background:yellow;\">" + values[i] + "</span>")
+    }
+    document.getElementById("text").innerHTML = response;
     document.getElementById("link").innerHTML = getUrlVars()['link'];
     document.getElementById("occurance").innerHTML = getUrlVars()['occurance'];
 
@@ -45,7 +49,8 @@ function getUrlVars() {
   }
 
 console.log(getUrlVars()['link'])
-console.log(getUrlVars()['words'])
+console.log(getUrlVars()['words'].split(","))
+
 console.log(getUrlVars()['occurance'])
 
 </script>
