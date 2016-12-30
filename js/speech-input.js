@@ -68,7 +68,7 @@
 					finalTranscript += event.results[i][0].transcript;
 				}
 			}
-			finalTranscript = capitalize(finalTranscript);
+			// finalTranscript = capitalize(finalTranscript);
 			inputEl.value = finalTranscript;
 			// console.log('hanji')
 			// console.log(finalTranscript)
