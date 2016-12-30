@@ -1,0 +1,54 @@
+<script>
+function loadJSON(callback) {
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', getUrlVars()['link'], true);
+    xobj.onreadystatechange = function() {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    }
+    xobj.send(null);
+}
+
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+    return params;
+}
+
+// Call to function with anonymous callback
+loadJSON(function(response) {
+    document.getElementById("text").innerHTML = replaceAll(response, getUrlVars()['words'], "<span style=\"background:yellow;\">" + getUrlVars()['words'] + "</span>")
+    document.getElementById("link").innerHTML = getUrlVars()['link'];
+    document.getElementById("occurance").innerHTML = getUrlVars()['occurance'];
+
+});
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+console.log(getUrlVars()['link'])
+console.log(getUrlVars()['words'])
+console.log(getUrlVars()['occurance'])
+
+</script>
+<h1>File: <div id="link"> </div> </h1>
+<h2>Occurance: <div id="occurance"> </div> </h2>
+<div id="text"> </div>

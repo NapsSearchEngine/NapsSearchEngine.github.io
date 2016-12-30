@@ -106,8 +106,8 @@ function myFunction() {
           if(value.length > 0)
           {
             $("#listOfPeople").append('<li class="collection-item avatar"> <i class="material-icons circle green">insert_chart</i><span class="title">' +
-              '<a target="_blank" href="openfile.php?link=WebFiles/' + value +
-              '&words=' + x.value.replace(/ /g,",") + '"">'+
+              '<a target="_blank" href="openfile.html?link=WebFiles/' + value +
+              '&words=' + x.value.replace(/ /g,",") + '&occurance=' + value2 + '"">'+
               value + '</a></span><p style="text-align:left;">' + value2 + ' hits</p></li>');
           }
         }
